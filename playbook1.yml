@@ -1,0 +1,16 @@
+---
+- name: install soft to Redos
+  hosts: all
+  become: yes
+  
+  tasks:
+    
+  - name: update package
+    yum: name=* state=latest
+      
+  - name: install wine
+    yum: name=wine state=latest
+    
+  - name: install yandex browser
+    yum: name=yandex-browser-stable state=latest
+...

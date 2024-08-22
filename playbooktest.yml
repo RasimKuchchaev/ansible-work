@@ -1,0 +1,32 @@
+---
+- name: install soft to Redos
+  hosts: all
+  become: yes
+  
+  tasks:
+  
+  - name: install wine
+    yum: name=wine state=latest
+    
+  - name: Check wine
+    shell: wine --version
+    register: wine_version
+
+  - name: wine version
+    debug:
+     var: wine_version.stdout_lines
+     
+  - name: notepad++ download
+    get_url:
+      url: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.7/npp.8.6.7.Installer.x64.exe
+      dest: "/home/dgmu/npp.8.6.7.Installer.x64.exe"
+      
+  - name: notepad++ run install
+    shell: wine "/home/dgmu/npp.8.6.7.Installer.x64.exe"
+    
+
+
+
+     
+    
+  
